@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryView;
 
-public class InventoryInteractListener implements Listener {
+public final class InventoryInteractListener implements Listener {
 
     @EventHandler
     public void onInteract(InventoryClickEvent event) {
