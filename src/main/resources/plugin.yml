@@ -1,0 +1,8 @@
+name: NPCConstructorPlugin
+version: '${project.version}'
+main: brcomkassin.Main
+api-version: '1.20'
+commands:
+  constructorBlock:
+
+
