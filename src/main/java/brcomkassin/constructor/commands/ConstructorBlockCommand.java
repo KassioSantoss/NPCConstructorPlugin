@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ConstructorBlockCommand implements CommandExecutor{
+public final class ConstructorBlockCommand implements CommandExecutor{
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (!(sender instanceof Player)) return false;
@@ -23,7 +23,6 @@ public class ConstructorBlockCommand implements CommandExecutor{
 
         int amount = Integer.parseInt(args[0]);
         ConstructorItem.receiveBlock(player, amount);
-
 
         return false;
     }

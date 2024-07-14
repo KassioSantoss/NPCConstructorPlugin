@@ -10,7 +10,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import java.util.Set;
 
-public class DataManager {
+public final class DataManager {
 
     public static String getItemData(ItemStack item, Set<NamespacedKey> keys) {
         if (!item.hasItemMeta()) return null;

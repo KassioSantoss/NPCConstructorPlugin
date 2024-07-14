@@ -1,7 +1,8 @@
 package brcomkassin.constructor.events;
 
-import brcomkassin.constructor.inventories.InventoryBukkit;
-import brcomkassin.constructor.inventories.ViewType;
+import brcomkassin.constructor.view.View;
+import brcomkassin.constructor.view.ViewBukkit;
+import brcomkassin.constructor.view.ViewType;
 import brcomkassin.constructor.utils.DataManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,13 +31,8 @@ public final class PlayerInteractListener implements Listener {
 
         event.setCancelled(true);
 
-        openInventory(player);
-
+        View view = ViewBukkit.getInstance().getManager().get(ViewType.MAIN_PAGE_CONSTRUCTOR);
+        view.open(player);
     }
-
-    private void openInventory(Player player) {
-        player.openInventory(InventoryBukkit.getViewManager(ViewType.BUILD_PAGE_CONSTRUCTOR).open());
-    }
-
 }
 
