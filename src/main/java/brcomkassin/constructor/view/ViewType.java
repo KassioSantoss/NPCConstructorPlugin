@@ -5,9 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ViewType {
 
-    MAIN_PAGE_CONSTRUCTOR("mainPageConstructor"),
-    REVIEW_PAGE_CONSTRUCTOR("reviewPageConstructor"),
-    BUILD_PAGE_CONSTRUCTOR("buildPageConstructor");
+    HOME_CONSTRUCTOR("mainPageConstructor"),
+    REVIEW_PAGE("reviewPageConstructor");
 
     private final String name;
 
@@ -15,7 +14,4 @@ public enum ViewType {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
 }

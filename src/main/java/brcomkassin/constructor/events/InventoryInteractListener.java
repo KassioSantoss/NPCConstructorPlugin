@@ -20,7 +20,7 @@ public final class InventoryInteractListener implements Listener {
 
         switch (event.getSlot()) {
             case 12:
-                player.openInventory(ViewBukkit.getViewManager(ViewType.BUILD_PAGE_CONSTRUCTOR).open());
+                player.openInventory(ViewBukkit.getInstance().getManager().get(ViewType.HOME_CONSTRUCTOR).open());
                 break;
             case 14:
                 break;

@@ -1,5 +1,8 @@
 package brcomkassin.constructor.view;
 
+import lombok.Getter;
+
+@Getter
 public final class ViewBukkit {
 
     private static ViewBukkit instance;
@@ -16,7 +19,4 @@ public final class ViewBukkit {
         return instance;
     }
 
-    public ViewManager getManager() {
-        return manager;
-    }
 }

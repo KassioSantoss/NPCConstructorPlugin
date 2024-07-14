@@ -17,9 +17,9 @@ public final class HomeConstructorView implements View {
     }
 
     @Override
-    public void open(Player player) {
+    public Inventory open() {
         if (inventory == null) init();
-        player.openInventory(inventory);
+        return inventory;
     }
 
     @Override
@@ -42,16 +42,16 @@ public final class HomeConstructorView implements View {
 
     private ItemStack createBuildItem() {
         return ItemBuilder.of(Material.CRAFTING_TABLE)
-                .setName("&6&lComeçar a construir")
-                .setLore("&fApertando aqui você vai iniciar a construção", "&fda sua casa!")
-                .build();
+            .setName("&6&lComeçar a construir")
+            .setLore("&fApertando aqui você vai iniciar a construção", "&fda sua casa!")
+            .build();
     }
 
     private ItemStack createReviewHouseItem() {
         return ItemBuilder.of(Material.LIGHT_BLUE_SHULKER_BOX)
-                .setName("&6&lRevisar Casa")
-                .setLore("&fApertando aqui você vai revisar a construção", "&fda sua casa!")
-                .build();
+            .setName("&6&lRevisar Casa")
+            .setLore("&fApertando aqui você vai revisar a construção", "&fda sua casa!")
+            .build();
     }
 
 

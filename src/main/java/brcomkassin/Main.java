@@ -8,9 +8,9 @@ import brcomkassin.constructor.events.PlayerInteractListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@Getter
 public final class Main extends JavaPlugin {
 
+    @Getter
     private static Main instance;
 
     @Override
@@ -40,7 +40,4 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
 
-    public static Main getInstance() {
-        return instance;
-    }
 }
