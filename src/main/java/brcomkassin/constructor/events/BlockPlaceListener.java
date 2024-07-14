@@ -1,7 +1,7 @@
 package brcomkassin.constructor.events;
 
 import brcomkassin.constructor.item.ConstructorKey;
-import brcomkassin.constructor.managers.DataManager;
+import brcomkassin.constructor.utils.DataManager;
 import brcomkassin.utils.MessageUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

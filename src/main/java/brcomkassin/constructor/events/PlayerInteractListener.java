@@ -2,7 +2,7 @@ package brcomkassin.constructor.events;
 
 import brcomkassin.constructor.inventories.InventoryBukkit;
 import brcomkassin.constructor.inventories.ViewType;
-import brcomkassin.constructor.managers.DataManager;
+import brcomkassin.constructor.utils.DataManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

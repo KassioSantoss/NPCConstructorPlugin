@@ -1,4 +1,4 @@
-package brcomkassin.constructor.managers;
+package brcomkassin.constructor.utils;
 
 import brcomkassin.Main;
 import brcomkassin.constructor.item.ConstructorKey;
