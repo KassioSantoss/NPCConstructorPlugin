@@ -11,6 +11,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Getter
 public final class Main extends JavaPlugin {
 
+    private static Main instance;
+
+    @Override
+    public void onLoad() {
+        instance = this;
+    }
+
     @Override
     public void onEnable() {
         registerCommands();
@@ -34,7 +41,6 @@ public final class Main extends JavaPlugin {
     }
 
     public static Main getInstance() {
-        return Main.getPlugin(Main.class);
+        return instance;
     }
-
 }

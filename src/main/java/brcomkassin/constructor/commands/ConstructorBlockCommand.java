@@ -24,7 +24,6 @@ public class ConstructorBlockCommand implements CommandExecutor{
         int amount = Integer.parseInt(args[0]);
         ConstructorItem.receiveBlock(player, amount);
 
-
         return false;
     }
 

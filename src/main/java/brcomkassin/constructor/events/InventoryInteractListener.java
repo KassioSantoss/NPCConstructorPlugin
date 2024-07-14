@@ -1,8 +1,7 @@
 package brcomkassin.constructor.events;
 
-import brcomkassin.Main;
-import brcomkassin.constructor.inventories.InventoryBukkit;
-import brcomkassin.constructor.inventories.ViewType;
+import brcomkassin.constructor.view.ViewBukkit;
+import brcomkassin.constructor.view.ViewType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +21,7 @@ public class InventoryInteractListener implements Listener {
 
         switch (event.getSlot()) {
             case 12:
-                player.openInventory(InventoryBukkit.getViewManager(ViewType.BUILD_PAGE_CONSTRUCTOR).open());
+                player.openInventory(ViewBukkit.getViewManager(ViewType.BUILD_PAGE_CONSTRUCTOR).open());
                 break;
             case 14:
                 break;
