@@ -18,7 +18,6 @@ public final class InventoryInteractListener implements Listener {
         if (!view.getTitle().equals("Construtor Manager")) return;
         event.setCancelled(true);
 
-
         switch (event.getSlot()) {
             case 12:
                 player.openInventory(ViewBukkit.getViewManager(ViewType.BUILD_PAGE_CONSTRUCTOR).open());
