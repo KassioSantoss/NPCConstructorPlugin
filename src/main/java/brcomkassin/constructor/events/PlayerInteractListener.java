@@ -31,7 +31,7 @@ public final class PlayerInteractListener implements Listener {
 
         event.setCancelled(true);
 
-        player.openInventory(ViewBukkit.getInstance().getManager().get(ViewType.HOME_CONSTRUCTOR).open());
+        ViewBukkit.getInstance().getManager().get(ViewType.HOME_CONSTRUCTOR).open(player);
 
     }
 }

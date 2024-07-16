@@ -10,6 +10,7 @@ public final class ViewManager {
     public ViewManager() {
         this.views = new HashMap<>();
         this.register(ViewType.HOME_CONSTRUCTOR, HomeConstructorView.get());
+        this.register(ViewType.REVIEW_PAGE, ReviewConstructorView.get());
     }
 
     public View get(ViewType type) {

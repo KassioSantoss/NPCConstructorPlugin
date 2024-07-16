@@ -1,6 +1,7 @@
 package brcomkassin.constructor.events;
 
 import brcomkassin.constructor.view.ViewBukkit;
+import brcomkassin.constructor.view.ViewManager;
 import brcomkassin.constructor.view.ViewType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,11 +19,14 @@ public final class InventoryInteractListener implements Listener {
         if (!view.getTitle().equals("Construtor Manager")) return;
         event.setCancelled(true);
 
+        ViewManager viewManager = ViewBukkit.getInstance().getManager();
+
         switch (event.getSlot()) {
             case 12:
-                player.openInventory(ViewBukkit.getInstance().getManager().get(ViewType.HOME_CONSTRUCTOR).open());
+                viewManager.get(ViewType.HOME_CONSTRUCTOR).open(player);
                 break;
             case 14:
+                viewManager.get(ViewType.REVIEW_PAGE).open(player);
                 break;
         }
     }

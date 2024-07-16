@@ -17,14 +17,13 @@ public final class HomeConstructorView implements View {
     }
 
     @Override
-    public Inventory open() {
+    public void open(Player player) {
         if (inventory == null) init();
-        return inventory;
+        player.openInventory(inventory);
     }
 
     @Override
     public void close(Player player) {
-        player.openInventory(inventory);
         player.closeInventory();
     }
 

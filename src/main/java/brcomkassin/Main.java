@@ -5,6 +5,8 @@ import brcomkassin.constructor.events.BlockBreakListener;
 import brcomkassin.constructor.events.BlockPlaceListener;
 import brcomkassin.constructor.events.InventoryInteractListener;
 import brcomkassin.constructor.events.PlayerInteractListener;
+import brcomkassin.constructor.events.area.AreaBlockBreak;
+import brcomkassin.constructor.events.area.AreaInteractListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +14,7 @@ public final class Main extends JavaPlugin {
 
     @Getter
     private static Main instance;
+    private AreaInteractListener areaInteractListener;
 
     @Override
     public void onLoad() {
@@ -20,6 +23,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        areaInteractListener = new AreaInteractListener();
         registerCommands();
         registerEvents();
     }
@@ -31,6 +35,7 @@ public final class Main extends JavaPlugin {
 
     private void registerCommands() {
         getCommand("constructorBlock").setExecutor(new ConstructorBlockCommand());
+        getCommand("paste").setExecutor(areaInteractListener);
     }
 
     private void registerEvents() {
@@ -38,6 +43,8 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryInteractListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new AreaBlockBreak(), this);
+        getServer().getPluginManager().registerEvents(areaInteractListener, this);
     }
 
 }
