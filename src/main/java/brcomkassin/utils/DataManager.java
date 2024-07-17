@@ -1,6 +1,7 @@
-package brcomkassin.constructor.utils;
+package brcomkassin.utils;
 
 import brcomkassin.Main;
+import brcomkassin.constructor.area.AreaManager;
 import brcomkassin.constructor.item.ConstructorKey;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -8,6 +9,8 @@ import org.bukkit.block.TileState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.Set;
 
 public final class DataManager {
@@ -30,14 +33,14 @@ public final class DataManager {
         PersistentDataContainer container = tileState.getPersistentDataContainer();
 
         container.set(new NamespacedKey(Main.getInstance(), ConstructorKey.CONSTRUCTOR_BLOCK_KEY),
-                PersistentDataType.STRING, ConstructorKey.CONSTRUCTOR_BLOCK_KEY);
+            PersistentDataType.STRING, ConstructorKey.CONSTRUCTOR_BLOCK_KEY);
 
         tileState.update();
     }
 
     public static void removeItemData(ItemStack itemStack) {
         itemStack.getItemMeta().getPersistentDataContainer()
-                .remove(new NamespacedKey(Main.getInstance(), ConstructorKey.CONSTRUCTOR_KEY));
+            .remove(new NamespacedKey(Main.getInstance(), ConstructorKey.CONSTRUCTOR_KEY));
     }
 
     public static String getBlockData(Block block) {

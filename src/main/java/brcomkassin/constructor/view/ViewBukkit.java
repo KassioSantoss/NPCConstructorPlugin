@@ -7,10 +7,10 @@ public final class ViewBukkit {
 
     private static ViewBukkit instance;
 
-    private final ViewManager manager;
+    private final InventoryManager inventoryManager;
 
-    public ViewBukkit() {
-        this.manager = new ViewManager();
+    private ViewBukkit() {
+        this.inventoryManager = new InventoryManager();
     }
 
     public static ViewBukkit getInstance() {

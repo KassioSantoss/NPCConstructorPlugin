@@ -1,5 +1,6 @@
-package brcomkassin.constructor.events.area;
+package brcomkassin.constructor.area;
 
+import brcomkassin.constructor.area.utils.BlockProperties;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,23 +10,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-public final class Area implements AreaManager {
+public final class AreaManager implements Area {
 
-    private final Map<Location, DataBlock> blockCopiedMap;
+    private final Map<Location, BlockProperties> blockCopiedMap;
+    private AreaSection areaSection;
 
-    public Area() {
+    AreaManager() {
         blockCopiedMap = new HashMap<>();
     }
 
+    public AreaSection getAreaSection() {
+        if (areaSection == null) {
+            areaSection = new AreaSection();
+        }
+        return areaSection;
+    }
 
     @Override
-    public void pasteBlocks(Map<Location, DataBlock> blockDataMap, Location newBaseLocation) {
+    public void pasteBlocks(Map<Location, BlockProperties> blockDataMap, Location newBaseLocation) {
         Location originLocation = blockDataMap.keySet().iterator().next();
         World world = originLocation.getWorld();
 
-        for (Map.Entry<Location, DataBlock> entry : blockDataMap.entrySet()) {
+        for (Map.Entry<Location, BlockProperties> entry : blockDataMap.entrySet()) {
             Location originalLoc = entry.getKey();
-            DataBlock blockData = entry.getValue();
+            BlockProperties blockData = entry.getValue();
 
             int offSetX = originalLoc.getBlockX() - originLocation.getBlockX();
             int offSetY = originalLoc.getBlockY() - originLocation.getBlockY();
@@ -44,7 +52,7 @@ public final class Area implements AreaManager {
     }
 
     @Override
-    public Map<Location, DataBlock> copyBlocks(AreaSection area) {
+    public void copyBlocks(AreaSection area) {
 
         Location pos1 = area.getPos1();
         Location pos2 = area.getPos2();
@@ -62,12 +70,11 @@ public final class Area implements AreaManager {
                 for (int z = zMin; z <= zMax; z++) {
                     Location blockLocation = new Location(pos1.getWorld(), x, y, z);
                     Block block = blockLocation.getBlock();
-                    blockCopiedMap.put(blockLocation, new DataBlock(block.getType(), blockLocation, block.getBlockData()));
+                    blockCopiedMap.put(blockLocation, new BlockProperties(block.getType(), blockLocation, block.getBlockData()));
                 }
             }
         }
         area.clear();
-        return blockCopiedMap;
     }
 
 }

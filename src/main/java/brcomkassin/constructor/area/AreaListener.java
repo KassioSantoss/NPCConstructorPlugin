@@ -1,4 +1,4 @@
-package brcomkassin.constructor.events.area;
+package brcomkassin.constructor.area;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,19 +9,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+public final class AreaListener implements Listener, CommandExecutor {
 
-public final class AreaInteractListener implements Listener, CommandExecutor {
+    private final AreaManager areaManager;
 
-    private final Area area;
-    private final AreaSection areaSection;
-
-    public AreaInteractListener() {
-        this.area = new Area();
-        this.areaSection = new AreaSection();
+    public AreaListener() {
+        areaManager = AreaBukkit.getAreaBukkit().getAreaManager();
     }
 
     @EventHandler
@@ -35,23 +32,29 @@ public final class AreaInteractListener implements Listener, CommandExecutor {
 
         if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR) return;
 
-        if (areaSection.isComplete()) {
-            area.copyBlocks(areaSection);
-            player.sendMessage("Area copied");
+        if (areaManager.getAreaSection().isComplete()) {
+            areaManager.copyBlocks(areaManager.getAreaSection());
+            player.sendMessage("AreaManager copied");
             return;
         }
 
         if (action == Action.RIGHT_CLICK_BLOCK) {
-            areaSection.setPos1(pos1);
+            areaManager.getAreaSection().setPos1(pos1);
             player.sendMessage("Pos1 set");
             return;
         }
 
         if (action == Action.LEFT_CLICK_BLOCK) {
-            areaSection.setPos2(pos2);
+            areaManager.getAreaSection().setPos2(pos2);
             player.sendMessage("Pos2 set");
             return;
         }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        if (player.getInventory().getItemInMainHand().getType() == Material.STICK) event.setCancelled(true);
     }
 
     @Override
@@ -60,10 +63,10 @@ public final class AreaInteractListener implements Listener, CommandExecutor {
 
         Player player = (Player) sender;
 
-        area.pasteBlocks(area.getBlockCopiedMap(), player.getLocation());
+        areaManager.pasteBlocks(areaManager.getBlockCopiedMap(), player.getLocation());
         player.sendMessage("Construindo blocos");
-
         return false;
     }
+
 }
 

@@ -1,7 +1,7 @@
-package brcomkassin.constructor.events;
+package brcomkassin.constructor.events.constructorEvent;
 
 import brcomkassin.constructor.item.ConstructorKey;
-import brcomkassin.constructor.utils.DataManager;
+import brcomkassin.utils.DataManager;
 import brcomkassin.utils.MessageUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-public final class BlockPlaceListener implements Listener {
+public final class ConstructorPlaceListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlace(BlockPlaceEvent event) {

@@ -1,5 +1,6 @@
-package brcomkassin.constructor.view;
+package brcomkassin.constructor.view.inventories;
 
+import brcomkassin.constructor.view.View;
 import brcomkassin.utils.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

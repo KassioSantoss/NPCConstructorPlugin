@@ -1,13 +1,16 @@
 package brcomkassin.constructor.view;
 
+import brcomkassin.constructor.view.inventories.HomeConstructorView;
+import brcomkassin.constructor.view.inventories.ReviewConstructorView;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public final class ViewManager {
+public final class InventoryManager {
 
     private final Map<ViewType, View> views;
 
-    public ViewManager() {
+    private InventoryManager() {
         this.views = new HashMap<>();
         this.register(ViewType.HOME_CONSTRUCTOR, HomeConstructorView.get());
         this.register(ViewType.REVIEW_PAGE, ReviewConstructorView.get());
@@ -19,7 +22,7 @@ public final class ViewManager {
         return this.views.get(type);
     }
 
-    public void register(ViewType type, View view) {
+    private void register(ViewType type, View view) {
         this.views.put(type, view);
     }
 }

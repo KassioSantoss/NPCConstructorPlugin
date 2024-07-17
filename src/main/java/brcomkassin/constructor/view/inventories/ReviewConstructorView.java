@@ -1,5 +1,6 @@
-package brcomkassin.constructor.view;
+package brcomkassin.constructor.view.inventories;
 
+import brcomkassin.constructor.view.View;
 import brcomkassin.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

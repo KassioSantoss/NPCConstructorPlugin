@@ -1,7 +1,7 @@
-package brcomkassin.constructor.events;
+package brcomkassin.constructor.events.constructorEvent;
 
 import brcomkassin.constructor.view.ViewBukkit;
-import brcomkassin.constructor.view.ViewManager;
+import brcomkassin.constructor.view.InventoryManager;
 import brcomkassin.constructor.view.ViewType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.InventoryView;
 
-public final class InventoryInteractListener implements Listener {
+public final class ConstructorInventoryListener implements Listener {
 
     @EventHandler
     public void onInteract(InventoryClickEvent event) {
@@ -19,7 +19,7 @@ public final class InventoryInteractListener implements Listener {
         if (!view.getTitle().equals("Construtor Manager")) return;
         event.setCancelled(true);
 
-        ViewManager viewManager = ViewBukkit.getInstance().getManager();
+        InventoryManager viewManager = ViewBukkit.getInstance().getInventoryManager();
 
         switch (event.getSlot()) {
             case 12:

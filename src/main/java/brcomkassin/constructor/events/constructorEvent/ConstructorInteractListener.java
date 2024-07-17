@@ -1,9 +1,8 @@
-package brcomkassin.constructor.events;
+package brcomkassin.constructor.events.constructorEvent;
 
-import brcomkassin.constructor.view.View;
 import brcomkassin.constructor.view.ViewBukkit;
 import brcomkassin.constructor.view.ViewType;
-import brcomkassin.constructor.utils.DataManager;
+import brcomkassin.utils.DataManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -12,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public final class PlayerInteractListener implements Listener {
+public final class ConstructorInteractListener implements Listener {
 
     @EventHandler
     public void onInteractBlock(PlayerInteractEvent event) {
@@ -31,7 +30,7 @@ public final class PlayerInteractListener implements Listener {
 
         event.setCancelled(true);
 
-        ViewBukkit.getInstance().getManager().get(ViewType.HOME_CONSTRUCTOR).open(player);
+        ViewBukkit.getInstance().getInventoryManager().get(ViewType.HOME_CONSTRUCTOR).open(player);
 
     }
 }

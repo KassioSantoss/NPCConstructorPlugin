@@ -1,7 +1,7 @@
-package brcomkassin.constructor.events;
+package brcomkassin.constructor.events.constructorEvent;
 
 import brcomkassin.constructor.item.ConstructorItem;
-import brcomkassin.constructor.utils.DataManager;
+import brcomkassin.utils.DataManager;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -9,7 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public final class BlockBreakListener implements Listener {
+public final class ConstructorBreakListener implements Listener {
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
