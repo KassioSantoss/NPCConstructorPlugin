@@ -12,24 +12,22 @@ import java.util.Map;
 @Getter
 public final class AreaManager implements Area {
 
-    private final Map<Location, BlockProperties> blockCopiedMap;
+    private final Map<Location, BlockProperties> blocks;
     private AreaSection areaSection;
 
     AreaManager() {
-        blockCopiedMap = new HashMap<>();
+        blocks = new HashMap<>();
     }
 
     public AreaSection getAreaSection() {
-        if (areaSection == null) {
-            areaSection = new AreaSection();
-        }
+        if (areaSection == null) areaSection = new AreaSection();
         return areaSection;
     }
 
     @Override
-    public void pasteBlocks(Map<Location, BlockProperties> blockDataMap, Location newBaseLocation) {
-        Location originLocation = blockDataMap.keySet().iterator().next();
-        World world = originLocation.getWorld();
+    public void pasteBlocks(final Map<Location, BlockProperties> blockDataMap, final Location newBaseLocation) {
+        final Location originLocation = blockDataMap.keySet().iterator().next();
+        final World world = originLocation.getWorld();
 
         for (Map.Entry<Location, BlockProperties> entry : blockDataMap.entrySet()) {
             Location originalLoc = entry.getKey();
@@ -48,7 +46,7 @@ public final class AreaManager implements Area {
             world.setBlockData(newLoc, blockData.getBlockData());
 
         }
-        blockCopiedMap.clear();
+        blocks.clear();
     }
 
     @Override
@@ -70,7 +68,7 @@ public final class AreaManager implements Area {
                 for (int z = zMin; z <= zMax; z++) {
                     Location blockLocation = new Location(pos1.getWorld(), x, y, z);
                     Block block = blockLocation.getBlock();
-                    blockCopiedMap.put(blockLocation, new BlockProperties(block.getType(), blockLocation, block.getBlockData()));
+                    blocks.put(blockLocation, new BlockProperties(block.getType(), blockLocation, block.getBlockData()));
                 }
             }
         }

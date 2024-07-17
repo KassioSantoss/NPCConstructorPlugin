@@ -12,8 +12,6 @@ public final class AreaSection {
     private Location pos2;
 
     AreaSection() {
-        pos1 = null;
-        pos2 = null;
     }
 
     public boolean isComplete() {
@@ -21,7 +19,6 @@ public final class AreaSection {
     }
 
     public void clear() {
-        pos1 = null;
-        pos2 = null;
+        pos1 = pos2 = null;
     }
 }

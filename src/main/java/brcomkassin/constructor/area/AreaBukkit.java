@@ -13,8 +13,7 @@ public class AreaBukkit {
     }
 
     public static AreaBukkit getAreaBukkit() {
-        if (areaBukkit == null)
-            areaBukkit = new AreaBukkit();
+        if (areaBukkit == null) areaBukkit = new AreaBukkit();
         return areaBukkit;
     }
 

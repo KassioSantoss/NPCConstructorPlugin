@@ -63,7 +63,7 @@ public final class AreaListener implements Listener, CommandExecutor {
 
         Player player = (Player) sender;
 
-        areaManager.pasteBlocks(areaManager.getBlockCopiedMap(), player.getLocation());
+        areaManager.pasteBlocks(areaManager.getBlocks(), player.getLocation());
         player.sendMessage("Construindo blocos");
         return false;
     }
