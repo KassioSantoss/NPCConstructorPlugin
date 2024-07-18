@@ -1,22 +1,24 @@
 package brcomkassin.constructor.area;
 
+import brcomkassin.constructor.area.utils.BlockCache;
 import brcomkassin.constructor.area.utils.BlockProperties;
+import brcomkassin.utils.MessageUtils;
 import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 public final class AreaManager implements Area {
 
-    private final Map<Location, BlockProperties> blocks;
     private AreaSection areaSection;
+    private final BlockCache blockCache;
 
     AreaManager() {
-        blocks = new HashMap<>();
+        blockCache = new BlockCache();
     }
 
     public AreaSection getAreaSection() {
@@ -25,11 +27,17 @@ public final class AreaManager implements Area {
     }
 
     @Override
-    public void pasteBlocks(final Map<Location, BlockProperties> blockDataMap, final Location newBaseLocation) {
-        final Location originLocation = blockDataMap.keySet().iterator().next();
+    public void pasteBlocks(final Player player, final BlockCache blockCache, final Location newBaseLocation) {
+
+        if (!areaSection.isComplete()) {
+            MessageUtils.sendMessage(player, "&4 Você precisa setar as duas posições primeiro!");
+            return;
+        }
+
+        final Location originLocation = blockCache.get().keySet().iterator().next();
         final World world = originLocation.getWorld();
 
-        for (Map.Entry<Location, BlockProperties> entry : blockDataMap.entrySet()) {
+        for (Map.Entry<Location, BlockProperties> entry : blockCache.get().entrySet()) {
             Location originalLoc = entry.getKey();
             BlockProperties blockData = entry.getValue();
 
@@ -46,14 +54,19 @@ public final class AreaManager implements Area {
             world.setBlockData(newLoc, blockData.getBlockData());
 
         }
-        blocks.clear();
+        blockCache.get().clear();
+        MessageUtils.sendMessage(player, "&6Construindo Blocos");
     }
 
     @Override
-    public void copyBlocks(AreaSection area) {
+    public void copyBlocks() {
 
-        Location pos1 = area.getPos1();
-        Location pos2 = area.getPos2();
+        if (areaSection.isComplete()) {
+            blockCache.get().clear();
+        }
+
+        Location pos1 = areaSection.getPos1();
+        Location pos2 = areaSection.getPos2();
 
         int xMin = Math.min(pos1.getBlockX(), pos2.getBlockX());
         int yMin = Math.min(pos1.getBlockY(), pos2.getBlockY());
@@ -68,11 +81,11 @@ public final class AreaManager implements Area {
                 for (int z = zMin; z <= zMax; z++) {
                     Location blockLocation = new Location(pos1.getWorld(), x, y, z);
                     Block block = blockLocation.getBlock();
-                    blocks.put(blockLocation, new BlockProperties(block.getType(), blockLocation, block.getBlockData()));
+                    blockCache.get().put(blockLocation, new BlockProperties(block.getType(), blockLocation, block.getBlockData()));
                 }
             }
         }
-        area.clear();
+        areaSection.clear();
     }
 
 }

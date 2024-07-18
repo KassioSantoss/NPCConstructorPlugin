@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class AreaBukkit {
 
-    private static AreaBukkit areaBukkit;
+    private static volatile AreaBukkit areaBukkit;
     private final AreaManager areaManager;
 
     private AreaBukkit() {
@@ -13,8 +13,13 @@ public class AreaBukkit {
     }
 
     public static AreaBukkit getAreaBukkit() {
-        if (areaBukkit == null) areaBukkit = new AreaBukkit();
+        if (areaBukkit == null) {
+            synchronized (AreaBukkit.class) {
+                if (areaBukkit == null) {
+                    areaBukkit = new AreaBukkit();
+                }
+            }
+        }
         return areaBukkit;
     }
-
 }

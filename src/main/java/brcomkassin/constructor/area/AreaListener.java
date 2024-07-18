@@ -1,5 +1,6 @@
 package brcomkassin.constructor.area;
 
+import brcomkassin.utils.MessageUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -13,6 +14,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.Duration;
+
 public final class AreaListener implements Listener, CommandExecutor {
 
     private final AreaManager areaManager;
@@ -24,6 +27,9 @@ public final class AreaListener implements Listener, CommandExecutor {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+
+        if (event.getClickedBlock() == null) return;
+
         Location pos1 = event.getClickedBlock().getLocation();
         Location pos2 = event.getClickedBlock().getLocation();
         Action action = event.getAction();
@@ -33,21 +39,20 @@ public final class AreaListener implements Listener, CommandExecutor {
         if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR) return;
 
         if (areaManager.getAreaSection().isComplete()) {
-            areaManager.copyBlocks(areaManager.getAreaSection());
-            player.sendMessage("AreaManager copied");
+            areaManager.copyBlocks();
+            MessageUtils.sendMessage(player, "&aArea Copiada!");
             return;
         }
 
         if (action == Action.RIGHT_CLICK_BLOCK) {
             areaManager.getAreaSection().setPos1(pos1);
-            player.sendMessage("Pos1 set");
+            MessageUtils.sendMessage(player, "&aPos1 set");
             return;
         }
 
         if (action == Action.LEFT_CLICK_BLOCK) {
             areaManager.getAreaSection().setPos2(pos2);
-            player.sendMessage("Pos2 set");
-            return;
+            MessageUtils.sendMessage(player, "&aPos2 set");
         }
     }
 
@@ -59,13 +64,12 @@ public final class AreaListener implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (!(sender instanceof Player)) return true;
+        if (!(sender instanceof Player)) return false;
 
         Player player = (Player) sender;
 
-        areaManager.pasteBlocks(areaManager.getBlocks(), player.getLocation());
-        player.sendMessage("Construindo blocos");
-        return false;
+        areaManager.pasteBlocks(player, areaManager.getBlockCache(), player.getLocation());
+        return true;
     }
 
 }

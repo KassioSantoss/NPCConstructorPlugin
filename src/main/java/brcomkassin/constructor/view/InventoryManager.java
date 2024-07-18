@@ -10,7 +10,7 @@ public final class InventoryManager {
 
     private final Map<ViewType, View> views;
 
-    private InventoryManager() {
+    InventoryManager() {
         this.views = new HashMap<>();
         this.register(ViewType.HOME_CONSTRUCTOR, HomeConstructorView.get());
         this.register(ViewType.REVIEW_PAGE, ReviewConstructorView.get());
